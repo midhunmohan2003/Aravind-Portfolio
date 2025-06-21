@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
-import { motion } from "framer-motion";
-
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const location = useLocation()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -34,18 +33,20 @@ const Navbar = () => {
             <ul className="flex gap-6">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <Link 
+                  <Link
                     to={item.href}
-                    className="text-base font-medium transition-colors text-gray-400 hover:text-[#FFD700] hover:font-bold hover:underline"
+                    className={`text-base font-medium transition-colors ${
+                      location.pathname === item.href
+                        ? 'text-[#FFD700] font-bold underline'
+                        : 'text-gray-400 hover:text-[#FFD700] hover:font-bold hover:underline'
+                    }`}
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            
           </div>
-          
 
           {/* Mobile Menu Button */}
           <button
@@ -53,11 +54,7 @@ const Navbar = () => {
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
@@ -72,7 +69,11 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 to={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-[#FFD700] hover:bg-gray-800 hover:font-bold hover:underline transition-colors text-center w-full"
+                className={`block px-3 py-2 rounded-md text-base font-medium text-center w-full transition-colors ${
+                  location.pathname === item.href
+                    ? 'text-[#FFD700] font-bold underline'
+                    : 'text-gray-400 hover:text-[#FFD700] hover:bg-gray-800 hover:font-bold hover:underline'
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
@@ -81,7 +82,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      
     </nav>
   )
 }

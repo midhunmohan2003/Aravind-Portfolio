@@ -3,3 +3,7 @@
 .brandName{
   font-family: 'Rajdhani', ui-sans-serif, system-ui, sans-serif;
 }
+
+body {
+  overflow-x: hidden;
+}
