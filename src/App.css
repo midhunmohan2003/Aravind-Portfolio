@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.brandName{
+  font-family: 'Rajdhani', ui-sans-serif, system-ui, sans-serif;
+}
