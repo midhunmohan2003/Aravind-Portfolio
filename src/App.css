@@ -4,6 +4,7 @@
   font-family: 'Rajdhani', ui-sans-serif, system-ui, sans-serif;
 }
 
-body {
+html, body {
   overflow-x: hidden;
 }
+  
